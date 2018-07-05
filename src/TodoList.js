@@ -13,20 +13,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  todoContainer: {
+    flexDirection: 'row',
+  },
 });
 
-const TodoList = ({ todos, addTodo }) => {
-  console.tron.log(todos);
-
-  return (
-    <View style={styles.container}>
-      { todos.map(todo => <Text key={todo.id}>{todo.text}</Text>) }
-      <TouchableOpacity onPress={() => { addTodo('Fazer e tomar café'); }}>
-        <Text>Adicionar Todos</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
+const TodoList = ({ todos, addTodo, delTodo }) => (
+  <View style={styles.container}>
+    { todos.map(todo => (
+      <View style={styles.todoContainer} key={todo.id}>
+        <Text>{todo.text}</Text>
+        <TouchableOpacity onPress={() => { delTodo(todo.id); }}>
+          <Text> Excluir</Text>
+        </TouchableOpacity>
+      </View>
+      ))
+    }
+    <TouchableOpacity onPress={() => { addTodo('Fazer e tomar café Novo..'); }}>
+      <Text>Adicionar Novo Todo</Text>
+    </TouchableOpacity>
+  </View>
+);
 
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.shape({
@@ -34,6 +41,7 @@ TodoList.propTypes = {
     text: PropTypes.string,
   })).isRequired,
   addTodo: PropTypes.func.isRequired,
+  delTodo: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

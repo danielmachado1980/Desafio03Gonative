@@ -4,3 +4,9 @@ export const addTodo = text => ({
     text,
   },
 });
+export const delTodo = id => ({
+  type: 'DELETE_TODO',
+  payload: {
+    id,
+  },
+});
