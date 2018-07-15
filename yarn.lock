@@ -510,6 +510,17 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
+"@mapbox/react-native-mapbox-gl@^6.1.2-beta2":
+  version "6.1.2-beta2"
+  resolved "https://registry.yarnpkg.com/@mapbox/react-native-mapbox-gl/-/react-native-mapbox-gl-6.1.2-beta2.tgz#2140aab25ab5c31db1c91b17076d1573b93950e2"
+  dependencies:
+    "@turf/helpers" "4.6.0"
+    underscore "^1.8.3"
+
+"@turf/helpers@4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.6.0.tgz#12398733b8ae28420df6166fa44c7ee8ffd6414c"
+
 "@types/node@^8.0.24":
   version "8.10.19"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.19.tgz#66b5b6325c048cbf4512b7a88b0e79c2ee99d3d2"
@@ -826,6 +837,13 @@ aws-sign2@~0.7.0:
 aws4@^1.6.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.7.0.tgz#d4d0e9b9dbfca77bf08eeb0a8a471550fe39e289"
+
+axios@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
+  dependencies:
+    follow-redirects "^1.3.0"
+    is-buffer "^1.1.5"
 
 axobject-query@^0.1.0:
   version "0.1.0"
@@ -2740,6 +2758,12 @@ flat-cache@^1.2.1:
     del "^2.0.2"
     graceful-fs "^4.1.2"
     write "^0.2.1"
+
+follow-redirects@^1.3.0:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.1.tgz#67a8f14f5a1f67f962c2c46469c79eaec0a90291"
+  dependencies:
+    debug "^3.1.0"
 
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
@@ -5161,6 +5185,10 @@ reactotron-core-client@^1.13.0:
     ramda "^0.24.1"
     ramdasauce "^2.0.0"
 
+reactotron-core-client@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/reactotron-core-client/-/reactotron-core-client-2.0.0.tgz#0229e7938ed17104b846c50295ae8cb40557e83c"
+
 reactotron-react-native@^1.14.0:
   version "1.14.0"
   resolved "https://registry.yarnpkg.com/reactotron-react-native/-/reactotron-react-native-1.14.0.tgz#9f8ca3d9cd09aa2a6c5179307f97f923afe40a48"
@@ -5173,6 +5201,16 @@ reactotron-react-native@^1.14.0:
     reactotron-core-client "^1.13.0"
     rn-host-detect "^1.1.3"
     socket.io-client "~1.7.3"
+
+reactotron-redux-saga@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/reactotron-redux-saga/-/reactotron-redux-saga-2.0.0.tgz#a90fc5e4100d14eb1e806b863721054a6af8c115"
+  dependencies:
+    ramda "^0.24.1"
+    ramdasauce "^2.0.0"
+    reactotron-core-client "^2.0.0"
+    redux "^3.7.1"
+    redux-saga "^0.15.3"
 
 reactotron-redux@^1.13.0:
   version "1.13.0"
@@ -5246,6 +5284,14 @@ redent@^1.0.0:
   dependencies:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
+
+redux-saga@^0.15.3:
+  version "0.15.6"
+  resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.15.6.tgz#8638dc522de6c6c0a496fe8b2b5466287ac2dc4d"
+
+redux-saga@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.16.0.tgz#0a231db0a1489301dd980f6f2f88d8ced418f724"
 
 redux@^3.7.1:
   version "3.7.2"
@@ -6143,6 +6189,10 @@ ultron@1.0.x:
 ultron@~1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ultron/-/ultron-1.1.1.tgz#9fe1536a10a664a65266a1e3ccf85fd36302bc9c"
+
+underscore@^1.8.3:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.1.tgz#06dce34a0e68a7babc29b365b8e74b8925203961"
 
 union-value@^1.0.0:
   version "1.0.0"

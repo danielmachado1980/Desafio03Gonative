@@ -8,12 +8,16 @@
     "react-devtool": "react-devtools"
   },
   "dependencies": {
+    "@mapbox/react-native-mapbox-gl": "^6.1.2-beta2",
+    "axios": "^0.18.0",
     "prop-types": "^15.6.1",
     "react": "16.3.1",
     "react-native": "0.55.3",
     "react-redux": "^5.0.7",
     "reactotron-redux": "^1.13.0",
-    "redux": "^4.0.0"
+    "reactotron-redux-saga": "^2.0.0",
+    "redux": "^4.0.0",
+    "redux-saga": "^0.16.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",

@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
 
 import * as TodoActions from 'store/actions/todos';
-// TodoActions : { addTodo } * Todas as Actions dentro de todos
+// TodoActions : { addTodo, delTodo ... } * Todas as Actions dentro de todos
 
 const styles = StyleSheet.create({
   container: {
@@ -18,7 +18,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const TodoList = ({ todos, addTodo, delTodo }) => (
+const TodoList = ({
+  todos, addTodo, delTodo, addFavoriteRequest,
+}) => (
   <View style={styles.container}>
     { todos.map(todo => (
       <View style={styles.todoContainer} key={todo.id}>
@@ -32,6 +34,14 @@ const TodoList = ({ todos, addTodo, delTodo }) => (
     <TouchableOpacity onPress={() => { addTodo('Fazer e tomar café Novo..'); }}>
       <Text>Adicionar Novo Todo</Text>
     </TouchableOpacity>
+    <TextInput
+      placeholder="Inserir"
+      autoCorrect={false}
+      underlineColorAndroid="transparent"
+    />
+    <TouchableOpacity onPress={() => { addFavoriteRequest('danielmachado1980/desafio03gonative'); }}>
+      <Text>Buscar</Text>
+    </TouchableOpacity>
   </View>
 );
 
@@ -42,7 +52,9 @@ TodoList.propTypes = {
   })).isRequired,
   addTodo: PropTypes.func.isRequired,
   delTodo: PropTypes.func.isRequired,
+  addFavoriteRequest: PropTypes.func.isRequired,
 };
+
 
 const mapStateToProps = state => ({
   todos: state.todos,
