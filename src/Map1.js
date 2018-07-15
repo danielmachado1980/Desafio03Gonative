@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Map = () => (
+const Map1 = () => (
   <View style={styles.container}>
     <Mapbox.MapView
       styleURL={Mapbox.StyleURL.Street}
@@ -24,5 +24,5 @@ const Map = () => (
   </View>
 );
 
-export default Map;
+export default Map1;
 

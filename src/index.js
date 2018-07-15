@@ -3,11 +3,11 @@ import { Provider } from 'react-redux';
 
 import 'config/ReactotronConfig';
 import store from 'store';
-import Map from './map';
+import Map1 from 'Map1';
 
 const App = () => (
   <Provider store={store}>
-    <Map />
+    <Map1 />
   </Provider>
 );
 
