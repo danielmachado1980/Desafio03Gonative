@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Mapbox from '@mapbox/react-native-mapbox-gl';
@@ -13,7 +11,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Map1 = () => (
+const Mapb = () => (
   <View style={styles.container}>
     <Mapbox.MapView
       styleURL={Mapbox.StyleURL.Street}
@@ -24,5 +22,5 @@ const Map1 = () => (
   </View>
 );
 
-export default Map1;
+export default Mapb;
 
