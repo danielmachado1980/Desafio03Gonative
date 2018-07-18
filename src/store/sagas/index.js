@@ -1,9 +1,10 @@
 import { all, takeLatest } from 'redux-saga/effects';
 
-import { addFavoriteRequest } from './favorites';
+import { Types as MarkerTypes } from 'store/ducks/markings';
+import { addMarkingRequest } from './markings';
 
 export default function* rootSaga() {
   return yield all([
-    takeLatest('ADD_FAVORITE_REQUEST', addFavoriteRequest),
+    takeLatest(MarkerTypes.ADD_REQUEST, addMarkingRequest),
   ]);
 }

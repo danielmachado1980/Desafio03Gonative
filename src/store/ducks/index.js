@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import todos from './todos';
+import markings from './markings';
 
 export default combineReducers({
-  todos,
+  markings,
 });

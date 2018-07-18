@@ -3,11 +3,11 @@ import { Provider } from 'react-redux';
 
 import 'config/ReactotronConfig';
 import store from 'store';
-import Mapb from './Mapb';
+import Main from 'pages/main';
 
 const App = () => (
   <Provider store={store}>
-    <Mapb />
+    <Main />
   </Provider>
 );
 
