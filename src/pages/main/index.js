@@ -1,47 +1,111 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import MapboxGL from '@mapbox/react-native-mapbox-gl';
+import PropTypes from 'prop-types';
+import { Text, View, Image } from 'react-native';
 
-import Modal from './components/modal';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as MarkerActions } from 'store/ducks/markings';
+
+import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
+
 import styles from './styles';
+import Modal from './components/modal';
 
-MapboxGL.setAccessToken('pk.eyJ1IjoiaGlnb3JvY2tldCIsImEiOiJjamlrdWJuY3gyaHYxM3Bvbmg0cGRwY3R0In0._TdjX9rYrjZ6Q6FFXOGwsQ');
+class Main extends Component {
+  static propTypes = {
+    addMarkingRequest: PropTypes.func.isRequired,
+    markers: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      avatar: PropTypes.string,
+      user: PropTypes.string,
+      description: PropTypes.string,
+      coordinate: PropTypes.shape({
+        longitude: PropTypes.number,
+        latitude: PropTypes.number,
+      }),
+    })).isRequired,
+    errorMsg: PropTypes.string,
+  };
 
-export default class Main extends Component {
-  addMarkers = async (e) => {
+  static defaultProps = {
+    errorMsg: null,
+  };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      region: {
+        latitude: -27.2177659,
+        longitude: -49.6451598,
+        latitudeDelta: 0.0042,
+        longitudeDelta: 0.0031,
+      },
+      modalVisible: false,
+      regionClicked: null,
+    };
   }
 
-  renderAnnotations = () => (
-    <MapboxGL.PointAnnotation
-      id="rocketseat"
-      coordinate={[-49.6451598, -27.2177659]}
-    >
-      <View style={styles.annotationContainer}>
-        <View style={styles.annotationFill} />
-      </View>
-      <MapboxGL.Callout title="Rocketseat House" />
-    </MapboxGL.PointAnnotation>
-  )
+  onMapLongPress = (e) => {
+    this.setState({ modalVisible: true, regionClicked: e.nativeEvent.coordinate });
+  }
+
+  addMarkers = async (e) => {
+    if (!e) return;
+    const { regionClicked } = this.state;
+    this.props.addMarkingRequest({ user: e, regionClicked });
+
+    if (this.props.errorMsg === null) this.setState({ modalVisible: false });
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <MapboxGL.MapView
-          centerCoordinate={[-49.6451598, -27.2177659]}
-          style={styles.container}
-          showUserLocation
-          styleURL={MapboxGL.StyleURL.Dark}
+        <MapView
+          provider={PROVIDER_GOOGLE}
+          showsPointsOfInterest={false}
+          showBuildings={false}
+          style={styles.map}
+          region={this.state.region}
+          initialRegion={this.state.region}
+          onLongPress={this.onMapLongPress}
         >
-          {this.renderAnnotations()}
-        </MapboxGL.MapView>
-        <Modal
-          OnCancel={() => {}}
+          {this.props.markers.map(marker => (
+            <Marker
+              key={marker.id}
+              coordinate={marker.coordinate}
+            >
+              <Image
+                style={styles.marker}
+                source={{ uri: marker.avatar }}
+              />
+              <Callout>
+                <View style={styles.tooltip}>
+                  <Text style={styles.tooltipTitle}>{marker.user}</Text>
+                  <Text>{marker.description}</Text>
+                </View>
+              </Callout>
+            </Marker>
+          ))}
+        </MapView>
+        {this.state.modalVisible
+        ? <Modal
+          OnCancel={() => this.setState({ modalVisible: false })}
           OnAdd={this.addMarkers}
           visible
         />
+        : null }
       </View>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  markers: state.markers.mapMarkers,
+  errorMsg: state.markers.errorOnAdd,
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(MarkerActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

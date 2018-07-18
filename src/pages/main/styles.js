@@ -1,24 +1,35 @@
 import { StyleSheet } from 'react-native';
+import { colors, metrics } from 'styles';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
-  annotationContainer: {
-    width: 30,
-    height: 30,
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    borderRadius: 15,
   },
-  annotationFill: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    backgroundColor: '#7159C1',
-    transform: [{ scale: 0.8 }],
-  }
+
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
+
+  marker: {
+    width: 32,
+    height: 32,
+    borderWidth: 5,
+    borderColor: colors.white,
+    borderRadius: 32,
+  },
+
+  tooltip: {
+    width: metrics.screenWidth - (metrics.baseMargin * 6),
+    padding: metrics.basePadding,
+    borderRadius: metrics.baseRadius,
+  },
+
+  tooltipTitle: {
+    fontWeight: 'bold',
+    marginBottom: metrics.baseMargin,
+  },
 });
 
 export default styles;
