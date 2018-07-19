@@ -101,8 +101,8 @@ class Main extends Component {
 }
 
 const mapStateToProps = state => ({
-  markers: state.markers.mapMarkers,
-  errorMsg: state.markers.errorOnAdd,
+  markers: state.markings.mapMarkings,
+  errorMsg: state.markings.errorOnAdd,
 });
 
 const mapDispatchToProps = dispatch =>
