@@ -31,20 +31,16 @@ class Main extends Component {
     errorMsg: null,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      region: {
-        latitude: -27.2177659,
-        longitude: -49.6451598,
-        latitudeDelta: 0.0042,
-        longitudeDelta: 0.0031,
-      },
-      modalVisible: false,
-      regionClicked: null,
-    };
-  }
+  state = {
+    region: {
+      latitude: -27.2177659,
+      longitude: -49.6451598,
+      latitudeDelta: 0.0042,
+      longitudeDelta: 0.0031,
+    },
+    modalVisible: false,
+    regionClicked: null,
+  };
 
   onMapLongPress = (e) => {
     this.setState({ modalVisible: true, regionClicked: e.nativeEvent.coordinate });
@@ -59,6 +55,7 @@ class Main extends Component {
   }
 
   render() {
+    console.tron.log(`Exibindo marcações...${this.props.markers}`);
     return (
       <View style={styles.container}>
         <MapView

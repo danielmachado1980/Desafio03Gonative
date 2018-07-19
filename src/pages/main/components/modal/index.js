@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Modal, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
-//import { connect } from 'react-redux';
-//import { bindActionCreators } from 'redux';
-//import { Creators as MarkerActions } from 'store/ducks/markers';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as MarkerActions } from 'store/ducks/markings';
 
 import styles from './styles';
 
@@ -20,13 +20,9 @@ class modal extends Component {
     errorMsg: null,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      inputText: '',
-    };
-  }
+  state = {
+    inputText: '',
+  };
 
   render() {
     return (
@@ -40,6 +36,7 @@ class modal extends Component {
                 style={styles.input}
                 underlineColorAndroid="rgba(0,0,0,0)"
                 onChangeText={inputText => this.setState({ inputText })}
+                autoCapitalize="none"
               />
               {this.props.errorMsg
                 ? <Text style={styles.msgError}>{this.props.errorMsg}</Text>
@@ -66,11 +63,11 @@ class modal extends Component {
   }
 }
 
-//const mapStateToProps = state => ({
-//  errorMsg: state.markers.errorOnAdd,
-//});
+const mapStateToProps = state => ({
+  errorMsg: state.markings.errorOnAdd,
+});
 
-//const mapDispatchToProps = dispatch =>
- // bindActionCreators(MarkerActions, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(MarkerActions, dispatch);
 
-export default modal; //connect(mapStateToProps, mapDispatchToProps)(modal);
+export default connect(mapStateToProps, mapDispatchToProps)(modal);
