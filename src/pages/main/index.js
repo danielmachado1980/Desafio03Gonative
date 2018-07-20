@@ -55,12 +55,12 @@ class Main extends Component {
   }
 
   render() {
-    console.tron.log(`Exibindo marcações...${this.props.markers}`);
+    console.tron.log(this.props.markers);
     return (
       <View style={styles.container}>
         <MapView
           provider={PROVIDER_GOOGLE}
-          showsPointsOfInterest={false}
+          showsPointsOfInterest
           showBuildings={false}
           style={styles.map}
           region={this.state.region}
@@ -69,8 +69,13 @@ class Main extends Component {
         >
           {this.props.markers.map(marker => (
             <Marker
-              key={marker.id}
-              coordinate={marker.coordinate}
+              key={String(marker.id)}
+              coordinate={{
+                latitude: marker.coordinate.latitude,
+                longitude: marker.coordinate.longitude,
+                latitudeDelta: 0.0042,
+                longitudeDelta: 0.0031,
+              }}
             >
               <Image
                 style={styles.marker}
