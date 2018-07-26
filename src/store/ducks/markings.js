@@ -27,7 +27,7 @@ export default function markings(state = initialState, action) {
       return {
         ...state,
         errorOnAdd: action.payload.message,
-        loading: false,
+        loading: true,
       };
     default:
       return state;

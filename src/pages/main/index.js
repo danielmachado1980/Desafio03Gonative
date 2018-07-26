@@ -25,10 +25,12 @@ class Main extends Component {
       }),
     })).isRequired,
     errorMsg: PropTypes.string,
+    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     errorMsg: null,
+    loading: null,
   };
 
   state = {
@@ -83,7 +85,9 @@ class Main extends Component {
     const { regionClicked } = this.state;
     this.props.addMarkingRequest({ user: e, regionClicked });
 
-    if (this.props.errorMsg === null) this.setState({ modalVisible: false });
+    if (this.props.errorMsg === null && this.props.loading === false) {
+      this.setState({ modalVisible: false });
+    }
   }
 
   render() {
@@ -159,6 +163,7 @@ class Main extends Component {
 const mapStateToProps = state => ({
   markers: state.markings.mapMarkings,
   errorMsg: state.markings.errorOnAdd,
+  loading: state.markings.loading,
 });
 
 const mapDispatchToProps = dispatch =>
