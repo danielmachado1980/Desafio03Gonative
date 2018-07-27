@@ -2,6 +2,7 @@ export const Types = {
   ADD_REQUEST: 'markings/ADD_REQUEST',
   ADD_SUCCESS: 'markings/ADD_SUCCESS',
   ADD_FAILURE: 'markings/ADD_FAILURE',
+  ADD_CANCEL: 'markings/ADD_CANCEL',
 };
 
 const initialState = {
@@ -15,7 +16,7 @@ export default function markings(state = initialState, action) {
     case Types.ADD_REQUEST:
       return {
         ...state,
-        loading: true,
+        loading: action.payload.marking.loading,
       };
     case Types.ADD_SUCCESS:
       return {
@@ -30,7 +31,11 @@ export default function markings(state = initialState, action) {
         loading: true,
       };
     default:
-      return state;
+      return {
+        ...state,
+        errorOnAdd: null,
+        loading: false,
+      };
   }
 }
 
@@ -54,6 +59,11 @@ export const Creators = {
     payload: {
       message,
     },
+  }),
+
+  cancelRequest: () => ({
+    type: Types.ADD_CANCEL,
+    payload: {},
   }),
 
 };
